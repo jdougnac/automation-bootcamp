@@ -6,6 +6,7 @@ export class RegisterPage {
   readonly lastNameInput: Locator;
   readonly emailInput: Locator;
   readonly passwordInput: Locator;
+  readonly registerButton: Locator;
   // agrega más locators para los otros campos...
 
   constructor(page: Page) {
@@ -14,6 +15,7 @@ export class RegisterPage {
     this.lastNameInput = page.locator('#register-form > div:nth-child(2) > input'); 
     this.emailInput = page.locator('#register-form > div:nth-child(3) > input'); 
     this.passwordInput = page.locator('#register-form > div.tf-field.style-1.mb_30 > input'); 
+    this.registerButton = page.locator('#register-form > div.mb_20 > button')
   }
 
   async goTo() {
@@ -36,5 +38,15 @@ export class RegisterPage {
     await this.passwordInput.fill(password);
   }
 
+  async clickRegisterButton() {
+    await this.registerButton.click();
+  }
+  
+  async waitForAlertAfterSubmit(): Promise<string> {
+    const dialogUserRegistered = await this.page.waitForEvent('dialog');
+    const message = dialogUserRegistered.message();
+    await dialogUserRegistered.accept();
+    return message;
+  }
   
 }
