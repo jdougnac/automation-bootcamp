@@ -1,0 +1,13 @@
+{
+    "compilerOptions": {
+      "module": "CommonJS",         // Use CommonJS (default for Node.js)
+      "target": "ESNext",           // Modern JavaScript output
+      "rootDir": "src",             // Keep TypeScript files in `src/`
+      "outDir": "dist",             // Output compiled JavaScript in `dist/`
+      "strict": true,               // Enable strict type checking
+      "esModuleInterop": true,      // Allow `import` and `require`
+      "allowSyntheticDefaultImports": true,
+      "resolveJsonModule": true
+    },
+    "include": ["src"]  // Only compile files in `src/`
+  }
